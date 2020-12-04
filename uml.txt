@@ -1,0 +1,146 @@
+class Produto {
+	private String nome;
+	private String descricao;
+	private double preco;
+	private String tipo;
+																																										
+	public Produto() {
+		this("", "", 0.0);
+	}
+  
+  public Produto(String nome, String descricao, double preco){
+  	this.nome = nome;
+ 		this.descricao = descricao;
+		this.preco = preco;
+	}
+
+	getters e setters...
+	equals e hashCode...
+	toString...
+}
+
+class Pratilheira {
+  private List<Produto> produtos;
+  private final int quantidadeMaxima;
+  
+  public Pratilheira(
+  	List<Product> produtos,
+  	int quantidadeMaxima
+	) {
+  	this.produtos = produtos;
+  	this.quantidadeMaxima = pratileira;
+  }
+  
+  public boolean removerProduto(String nomeProduto);
+  
+  getters e setters...
+	equals e hashCode...
+	toString...
+}
+
+class abstract Pessoa {
+	
+	private String nome;
+	private int idade;
+	
+	public Pessoa() {
+		this("", 0);
+	}
+	
+	public Pessoa(String nome, int idade) {
+		this.nome = nome;
+		this.idade = idade;
+	}
+
+	getters e setters...
+	equals e hashCode...
+	toString...
+}
+
+class Gerente extends Pessoa {
+
+	private String cpf;
+	
+  public Gerente(String nome, int idade, String cpf) {
+  	super(nome, idade);
+  	this.cpf = cpf;
+  }
+  
+  public Funcionario buscaFuncionario(String cpf);
+  
+  public boolean removerFuncionario(String cpf);
+	
+	getters e setters...
+	equals e hashCode...
+	toString...
+}
+
+class Funcionario extends Pessoa {
+	private String cpf;
+	
+	public Funcionario(String nome, int idade, String cpf) {
+		super(nome, idade);
+		this.cpf = cpf;
+	}
+	
+	getters e setters...
+	equals e hashCode...
+	toString...
+}
+
+class CaixaRegistradora {
+	private double total;
+		
+	public CaixaRegistradora(double total) {
+		this.total = total;
+	}
+
+	getters e setters...
+	equals e hashCode...
+	toString...
+}
+
+interface CarrinhoDeComprasInterface {
+	public adicionarProdutos(List<Produto> productos);
+	public removerProduto(Produto produto);
+	public fecharPedido(List<Produto> produtos);
+}
+
+class Carrinho implements CarrinhoDeComprasInterface {
+	private List<Produto> produtos;
+	
+	public Carrinho(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
+	public adicionarProdutos(List<Produto> productos) {}
+	
+	public removerProduto(Produto produto) {}
+	
+	public fecharPedido(List<Produto> produtos, String nomeFuncionario) {}
+}
+
+fork;
+
+instalar git;
+
+git clone https://github.com/danieldfc/controle-produtos-farmacia.git
+
+git checkout -b lucas
+
+git add --all
+
+git commit -m "cria carrinho de compras"
+
+git push -u origin master
+
+
+
+
+
+
+
+
+
+
+
