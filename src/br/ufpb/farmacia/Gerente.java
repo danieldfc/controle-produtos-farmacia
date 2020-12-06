@@ -5,6 +5,7 @@
  */
 package br.ufpb.farmacia;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -12,25 +13,24 @@ import java.util.Objects;
  * @author lucas
  */
 public class Gerente extends Pessoa {
-    private String cpf;
-    
-    public Gerente(String nome, int idade, String cpf) {
-        super(nome, idade);
-        this.cpf = cpf;
+    private List<Funcionario> funcionarios;
+
+    public Gerente(List<Funcionario> funcionarios, String nome, int idade, String cpf) {
+        super(nome, idade, cpf);
+        this.funcionarios = funcionarios;
     }
 
-    public String getCpf() {
-        return cpf;
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setFuncionarios(List<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 73 * hash + Objects.hashCode(this.cpf);
+        int hash = 7;
         return hash;
     }
 
@@ -46,7 +46,7 @@ public class Gerente extends Pessoa {
             return false;
         }
         final Gerente other = (Gerente) obj;
-        if (!Objects.equals(this.cpf, other.cpf)) {
+        if (!Objects.equals(this.funcionarios, other.funcionarios)) {
             return false;
         }
         return true;
@@ -54,6 +54,9 @@ public class Gerente extends Pessoa {
 
     @Override
     public String toString() {
-        return "Nome: " + getNome() + "Cpf: " + cpf;
+        return "Nome: " + getNome() 
+                + "CPF: " + getCpf();
     }
+    
+    
 }

@@ -3,25 +3,25 @@ package br.ufpb.farmacia;
 import java.util.Objects;
 
 public class Funcionario extends Pessoa {
-    private String cpfFunc;
+    private String funcao;
 
-    public Funcionario(String cpf, String nome, int idade) {
-        super(nome, idade);
-        this.cpfFunc = cpf;
+    public Funcionario(String funcao, String nome, int idade, String cpf) {
+        super(nome, idade, cpf);
+        this.funcao = funcao;
     }
 
-    public String getCpf() {
-        return cpfFunc;
+    public String getFuncao() {
+        return funcao;
     }
 
-    public void setCpf(String cpf) {
-        this.cpfFunc = cpf;
+    public void setFuncao(String funcao) {
+        this.funcao = funcao;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.cpfFunc);
+        hash = 19 * hash + Objects.hashCode(this.funcao);
         return hash;
     }
 
@@ -37,7 +37,7 @@ public class Funcionario extends Pessoa {
             return false;
         }
         final Funcionario other = (Funcionario) obj;
-        if (!Objects.equals(this.cpfFunc, other.cpfFunc)) {
+        if (!Objects.equals(this.funcao, other.funcao)) {
             return false;
         }
         return true;
@@ -45,6 +45,8 @@ public class Funcionario extends Pessoa {
 
     @Override
     public String toString() {
-        return "Nome: " + getNome() + "Cpf: " + cpfFunc;
+        return "Nome: " + getNome() + "CPF: " + getCpf();
     }
+    
+    
 }

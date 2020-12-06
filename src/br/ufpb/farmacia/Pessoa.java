@@ -15,14 +15,12 @@ public abstract class Pessoa {
    
     private String nome;
     private int idade;
-	
-    public Pessoa() {
-        this("", 0);
-    }
+    private String cpf;
 
-    public Pessoa(String nome, int idade) {
+    public Pessoa(String nome, int idade, String cpf) {
         this.nome = nome;
         this.idade = idade;
+        this.cpf = cpf;
     }
 
     public String getNome() {
@@ -40,10 +38,21 @@ public abstract class Pessoa {
     public void setIdade(int idade) {
         this.idade = idade;
     }
-    
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
+        int hash = 3;
+        hash = 73 * hash + Objects.hashCode(this.nome);
+        hash = 73 * hash + this.idade;
+        hash = 73 * hash + Objects.hashCode(this.cpf);
         return hash;
     }
 
@@ -65,12 +74,18 @@ public abstract class Pessoa {
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
+        if (!Objects.equals(this.cpf, other.cpf)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
         return "Nome: " + nome 
-                + "\nidade: " + idade ;
+                + "\nidade: " + idade 
+                + "\ncpf=" + cpf;
     }
+
+    
 }
