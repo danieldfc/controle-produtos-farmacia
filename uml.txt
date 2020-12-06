@@ -31,7 +31,10 @@ class Pratilheira {
   	this.quantidadeMaxima = pratileira;
   }
   
+  private boolean existeProduto(Produto produto);
   public boolean removerProduto(String nomeProduto);
+  public boolean adicionarProduto(Produto produto);
+  public boolean atualizarPratilheira(ArrayList<Produto> produtos);
   
   getters e setters...
 	equals e hashCode...
@@ -67,8 +70,8 @@ class Gerente extends Pessoa {
   }
   
   public Funcionario buscaFuncionario(String cpf);
-  
-  public boolean removerFuncionario(String cpf);
+  public boolean removerFuncionario(String cpf) throws FuncionarioNotFound;
+  public boolean adicionaFuncionario(String nome, int idade, String cpf);
 	
 	getters e setters...
 	equals e hashCode...
@@ -96,14 +99,20 @@ class CaixaRegistradora {
 	}
 
 	getters e setters...
-	equals e hashCode...
 	toString...
 }
 
+class Pedido {
+	private List<Produto> produtos;
+	
+	getters e setters...
+	toString...	
+}
+
 interface CarrinhoDeComprasInterface {
-	public adicionarProdutos(List<Produto> productos);
-	public removerProduto(Produto produto);
-	public fecharPedido(List<Produto> produtos);
+	public boolean adicionarProdutos(List<Produto> productos);
+	public boolean removerProduto(Produto produto);
+	public boolean fecharPedido(Pedido pedido, cpfFuncionario);
 }
 
 class Carrinho implements CarrinhoDeComprasInterface {
@@ -113,11 +122,9 @@ class Carrinho implements CarrinhoDeComprasInterface {
 		this.produtos = produtos;
 	}
 
-	public adicionarProdutos(List<Produto> productos) {}
-	
+	public adicionarProduto(Produto produto) {}
 	public removerProduto(Produto produto) {}
-	
-	public fecharPedido(List<Produto> produtos, String nomeFuncionario) {}
+	public fecharPedido(Pedido pedido, String cpfFuncionario) {}
 }
 
 fork;
@@ -130,17 +137,7 @@ git checkout -b lucas
 
 git add --all
 
-git commit -m "cria carrinho de compras"
+git commit -m "Minha feature incrível"
 
 git push -u origin master
-
-
-
-
-
-
-
-
-
-
 
