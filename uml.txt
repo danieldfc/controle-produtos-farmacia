@@ -63,7 +63,7 @@ class abstract Pessoa {
 }
 
 interface GerenteInterface {
-	public Funcionario buscaFuncionario(String cpf) thows FuncionarioNotFound;
+	public Funcionario buscaFuncionario(String cpf) throws FuncionarioNotFound;
   public boolean removerFuncionario(String cpf) throws FuncionarioNotFound;
   public boolean adicionaFuncionario(String nome, int idade, String cpf);
   public boolean listarFuncionarios();
