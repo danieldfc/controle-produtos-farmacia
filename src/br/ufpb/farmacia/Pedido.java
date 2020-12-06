@@ -37,7 +37,7 @@ public class Pedido implements CarrinhoDeCompras {
 
   @Override
   public String toString() {
-    return "Pedido{" + "ID=" + ID + ", produtos=" + produtos + '}';
+    return "Pedido{" + "ID=" + this.ID + ", produtos=" + produtos + '}';
   } 
 
   @Override
