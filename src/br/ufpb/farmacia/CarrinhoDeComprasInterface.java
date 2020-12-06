@@ -5,15 +5,14 @@
  */
 package br.ufpb.farmacia;
 
+import java.util.List;
+
 /**
  *
- * @author danielfelizardo
+ * @author lucas
  */
-public class ProdutoNotFoundPedido extends Exception {
-  
-  public static final long serialVersionUID = 1L;
-  
-  public ProdutoNotFoundPedido(String msg) {
-    super(msg);
-  }
+public interface CarrinhoDeComprasInterface {
+    
+    public boolean adicionarProdutos(List<Produto> productos);
+    public boolean removerProduto(Produto produto);
 }
