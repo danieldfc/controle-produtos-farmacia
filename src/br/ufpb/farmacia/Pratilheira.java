@@ -6,6 +6,7 @@
 package br.ufpb.farmacia;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -52,9 +53,10 @@ public class Pratilheira {
     return this.produtos.add(produto);
   }
   
-//  public boolean atualizarPratilheira(List<Produto> produto) {
-//    return true; // TODO: criar
-//  }
+  public boolean atualizarPratilheira(List<Produto> produtos) {
+    this.produtos.removeAll(this.produtos);
+    return this.produtos.addAll(produtos);
+  }
 
   public List<Produto> getProdutos() {
     return produtos;
@@ -62,6 +64,31 @@ public class Pratilheira {
 
   public void setProdutos(List<Produto> produtos) {
     this.produtos = produtos;
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 7;
+    hash = 41 * hash + Objects.hashCode(this.produtos);
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final Pratilheira other = (Pratilheira) obj;
+    if (!Objects.equals(this.produtos, other.produtos)) {
+      return false;
+    }
+    return true;
   }
 
   @Override
