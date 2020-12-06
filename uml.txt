@@ -45,14 +45,16 @@ class abstract Pessoa {
 	
 	private String nome;
 	private int idade;
+	private String cpf;
 	
 	public Pessoa() {
-		this("", 0);
+		this("", 0, "");
 	}
 	
-	public Pessoa(String nome, int idade) {
+	public Pessoa(String nome, int idade, String cpf) {
 		this.nome = nome;
 		this.idade = idade;
+		this.cpf = cpf;
 	}
 
 	getters e setters...
@@ -60,20 +62,22 @@ class abstract Pessoa {
 	toString...
 }
 
-class Gerente extends Pessoa {
+interface GerenteInterface {
+	public Funcionario buscaFuncionario(String cpf) throws FuncionarioNotFound;
+  public boolean removerFuncionario(String cpf) throws FuncionarioNotFound;
+  public boolean adicionaFuncionario(String nome, int idade, String cpf);
+  public boolean listarFuncionarios();
+}
 
-	private String cpf;
+class Gerente extends Pessoa implements GerenteInterface {
+
 	private List<Funcionario> funcionarios;
 	
   public Gerente(String nome, int idade, String cpf, List<Funcionario> funcionarios) {
-  	super(nome, idade);
+  	super(nome, idade, cpf);
   	this.cpf = cpf;
   	this.funcionarios = funcionarios;
   }
-  
-  public Funcionario buscaFuncionario(String cpf);
-  public boolean removerFuncionario(String cpf) throws FuncionarioNotFound;
-  public boolean adicionaFuncionario(String nome, int idade, String cpf);
 	
 	getters e setters...
 	equals e hashCode...
@@ -82,12 +86,11 @@ class Gerente extends Pessoa {
 
 class Funcionario extends Pessoa {
 
-	private String cpf;
-	private String tipo;
+	private String funcao;
 	
-	public Funcionario(String nome, int idade, String cpf) {
-		super(nome, idade);
-		this.cpf = cpf;
+	public Funcionario(String nome, int idade, String cpf, String funcao) {
+		super(nome, idade, cpf);
+		this.funcao = funcao;
 	}
 	
 	getters e setters...
@@ -106,42 +109,19 @@ class CaixaRegistradora {
 	toString...
 }
 
-class Pedido {
+interface CarrinhoDeCompras {
+	public boolean adicionarProduto(Produto producto);
+	public boolean removerProduto(Produto produto);
+}
+
+class Pedido implements CarrinhoDeCompras {
+
+	private int ID;
 	private List<Produto> produtos;
+
+	public adicionarProduto(Produto produto) {}
+	public removerProduto(Produto produto) {}
 	
 	getters e setters...
 	toString...	
 }
-
-interface CarrinhoDeComprasInterface {
-	public boolean adicionarProdutos(List<Produto> productos);
-	public boolean removerProduto(Produto produto);
-	public boolean fecharPedido(Pedido pedido, cpfFuncionario);
-}
-
-class Carrinho implements CarrinhoDeComprasInterface {
-	private List<Produto> produtos;
-	
-	public Carrinho(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-
-	public adicionarProduto(Produto produto) {}
-	public removerProduto(Produto produto) {}
-	public fecharPedido(Pedido pedido, String cpfFuncionario) {}
-}
-
-fork;
-
-instalar git;
-
-git clone https://github.com/danieldfc/controle-produtos-farmacia.git
-
-git checkout -b lucas
-
-git add --all
-
-git commit -m "Minha feature incrível"
-
-git push -u origin master
-
