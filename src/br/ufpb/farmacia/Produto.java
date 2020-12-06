@@ -14,12 +14,12 @@ import java.util.Objects;
  */
 public class Produto {
 
-    private String nome;
-    private String descricao;
-    private double preco;
-    private String tipo;
-																																										
-    public Produto() {
+  private String nome;
+	private String descricao;
+	private double preco;
+	private String tipo;
+
+	public Produto() {
 		this("", "", 0.0);
 	}
   
