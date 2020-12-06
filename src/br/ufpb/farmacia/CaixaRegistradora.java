@@ -7,26 +7,27 @@ package br.ufpb.farmacia;
 
 /**
  *
- * @author danielfelizardo
+ * @author lucas
  */
 public class CaixaRegistradora {
-  
-  private double total;
-  
-  public CaixaRegistradora(double total) {
-    this.total = total;
-  }
+    private double total;
 
-  public double getTotal() {
-    return total;
-  }
+    public CaixaRegistradora(double total) {
+        this.total = total;
+    }
 
-  public void setTotal(double total) {
-    this.total = total;
-  }
+    public double getTotal() {
+        return total;
+    }
 
-  @Override
-  public String toString() {
-    return "CaixaRegistradora{" + "total=" + total + '}';
-  }  
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    @Override
+    public String toString() {
+        return "total: " + total;
+    }
+    
+    
 }
