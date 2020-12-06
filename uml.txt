@@ -63,10 +63,12 @@ class abstract Pessoa {
 class Gerente extends Pessoa {
 
 	private String cpf;
+	private List<Funcionario> funcionarios;
 	
-  public Gerente(String nome, int idade, String cpf) {
+  public Gerente(String nome, int idade, String cpf, List<Funcionario> funcionarios) {
   	super(nome, idade);
   	this.cpf = cpf;
+  	this.funcionarios = funcionarios;
   }
   
   public Funcionario buscaFuncionario(String cpf);
@@ -79,7 +81,9 @@ class Gerente extends Pessoa {
 }
 
 class Funcionario extends Pessoa {
+
 	private String cpf;
+	private String tipo;
 	
 	public Funcionario(String nome, int idade, String cpf) {
 		super(nome, idade);

@@ -23,10 +23,14 @@ public class Pedido implements CarrinhoDeComprasInterface {
     }
 
     @Override
+    public String toString() {
+      return "Pedido{" + "ID=" + this.ID + ", produtos=" + produtos + '}';
+    } 
+  
+    @Override
     public boolean adicionarProdutos(List<Produto> productos) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
     @Override
     public boolean removerProduto(Produto produto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
