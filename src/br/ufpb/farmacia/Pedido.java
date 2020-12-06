@@ -12,7 +12,18 @@ import java.util.List;
  * @author lucas
  */
 public class Pedido implements CarrinhoDeComprasInterface {
+
+    private int ID;
     private List<Produto> produtos;
+    
+    public Pedido(List<Produto> produtos) {
+      this.produtos = produtos;
+      this.ID += 1;
+    }
+    
+    public int getID() {
+      return ID;
+    }
 
     public List<Produto> getProdutos() {
         return produtos;

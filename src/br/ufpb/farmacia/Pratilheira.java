@@ -6,7 +6,6 @@
 package br.ufpb.farmacia;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  *
@@ -16,13 +15,16 @@ public class Pratilheira {
   
   private List<Produto> produtos;
   private final int quantidadeMaxima;
+  private String tipo;
   
   public Pratilheira(
   	List<Produto> produtos,
-  	int quantidadeMaxima
+  	int quantidadeMaxima,
+    String tipo
 	) {
   	this.produtos = produtos;
   	this.quantidadeMaxima = quantidadeMaxima;
+    this.tipo = tipo;
   }
   
   private boolean existeProduto(Produto produto) {
@@ -31,7 +33,7 @@ public class Pratilheira {
         return true;
       }
     }
-    
+
     return false;
   }
   
@@ -49,36 +51,13 @@ public class Pratilheira {
     if (existeProduto(produto)) {
       return false;
     }
-    
-    return this.produtos.add(produto);
+
+    if (this.produtos.size() == this.quantidadeMaxima) {
+      return false;
+    } else {
+      return this.produtos.add(produto);
+    }
   }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Pratilheira other = (Pratilheira) obj;
-        if (this.quantidadeMaxima != other.quantidadeMaxima) {
-            return false;
-        }
-        if (!Objects.equals(this.produtos, other.produtos)) {
-            return false;
-        }
-        return true;
-    }
 
   public List<Produto> getProdutos() {
     return produtos;
@@ -88,8 +67,16 @@ public class Pratilheira {
     this.produtos = produtos;
   }
 
+  public String getTipo() {
+    return tipo;
+  }
+
+  public void setTipo(String tipo) {
+    this.tipo = tipo;
+  }
+
   @Override
   public String toString() {
-    return "Pratilheira{" + "produtos=" + produtos + ", quantidadeMaxima=" + quantidadeMaxima + '}';
+    return "Pratilheira{" + "produtos=" + produtos + ", quantidadeMaxima=" + quantidadeMaxima + ", tipo=" + tipo + '}';
   }
 }
