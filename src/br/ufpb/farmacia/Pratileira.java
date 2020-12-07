@@ -60,14 +60,24 @@ public class Pratileira {
     }
   }
   
+  public Produto showProduto(String nomeProduto) throws ProdutoNotFound {
+    for (Produto produto: this.produtos) {
+      if (produto.getNome().equalsIgnoreCase(nomeProduto)) {
+        return produto;
+      }
+    }
+
+    throw new ProdutoNotFound("Produto não encontrado no sistema.");
+  }
+  
   public boolean atualizarPratilheira(List<Produto> produtos, String tipo) {
     this.produtos.removeAll(this.produtos);
     this.setTipo(tipo);
     return this.produtos.addAll(produtos);
   }
   
-  public List<Produto> listarProdutosDoTipo(String tipo) {
-    List<Produto> produtosDoTipo = new ArrayList<Produto>();
+  public ArrayList<Produto> listarProdutosDoTipo(String tipo) {
+    ArrayList<Produto> produtosDoTipo = new ArrayList<Produto>();
     
     for (Produto produto: this.produtos) {
       if (produto.getTipo().equalsIgnoreCase(tipo)) {

@@ -74,6 +74,16 @@ public class Farmacia extends CaixaRegistradora {
 
     return false;
   }
+  
+  public Pedido showPedido(int ID) throws PedidoNotFound {
+    for (Pedido pedido: this.pedidos) {
+      if (pedido.getID() == ID) {
+        return pedido;
+      } 
+    }
+    
+    throw new PedidoNotFound("Pedido não encontrado no sistema.");
+  }
 
   public Gerente getGerente() {
     return gerente;

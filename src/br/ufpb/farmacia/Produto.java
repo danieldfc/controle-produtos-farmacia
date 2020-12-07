@@ -19,13 +19,14 @@ public class Produto {
   private String tipo;
 
   public Produto() {
-    this("", "", 0.0);
+    this("", "", 0.0, "");
   }
 
-  public Produto(String nome, String descricao, double preco) {
+  public Produto(String nome, String descricao, double preco, String tipo) {
     this.nome = nome;
     this.descricao = descricao;
     this.preco = preco;
+    this.tipo = tipo;
   }
 
   public String getNome() {
