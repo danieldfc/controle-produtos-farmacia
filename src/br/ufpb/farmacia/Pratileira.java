@@ -60,8 +60,9 @@ public class Pratileira {
     }
   }
   
-  public boolean atualizarPratilheira(List<Produto> produtos) {
+  public boolean atualizarPratilheira(List<Produto> produtos, String tipo) {
     this.produtos.removeAll(this.produtos);
+    this.setTipo(tipo);
     return this.produtos.addAll(produtos);
   }
   

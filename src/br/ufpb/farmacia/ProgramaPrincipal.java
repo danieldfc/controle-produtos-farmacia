@@ -17,10 +17,10 @@ public class ProgramaPrincipal {
   public static int menuPratileira(Scanner sc) {
     System.out.println("--- Pratileira ---");
     System.out.println("1 - Criar pratileira");
-    System.out.println("2 - Listar produtos do tipo");
-    System.out.println("3 - Atualizar pratileira");
-    System.out.println("4 - Adicionar produto");
-    System.out.println("5 - Remover produto");
+    System.out.println("2 - Atualizar pratileira");
+    System.out.println("3 - Adicionar produto");
+    System.out.println("4 - Remover produto");
+    System.out.println("5 - Listar produtos do tipo");
     System.out.print("Opção: ");
     int op = sc.nextInt();
     
@@ -111,24 +111,92 @@ public class ProgramaPrincipal {
             err.printStackTrace();
           }
         } else if (opPratileira == 2) {
-          try {            
+          try {
             System.out.print("Qual tipo para listar? ");
+            String tipoParaListar = sc.next();
+            
+            Pratileira pratileira = farmacia.showPratileiraDoTipo(tipoParaListar);
+            
+            System.out.print("Quantidade de produtos para adicionar:");
+            int quantidadeProdutos = sc.nextInt();
+            
+            System.out.print("Qual o tipo de pratileira:");
             String tipo = sc.next();
             
-            farmacia.listPratileiraDoTipo(tipo);
+            ArrayList<Produto> produtos = new ArrayList<Produto>();
+            
+            for (int i = 0; i < quantidadeProdutos; i++) {
+              System.out.print("Nome do produto ["+(i+1)+"]:");
+              String nome = sc.next();
+
+              System.out.print("Descrição do produto ["+(i+1)+"]:");
+              String descricao = sc.next();
+              
+              System.out.print("Preço do produto ["+(i+1)+"]:");
+              double preco = sc.nextDouble();
+              
+              Produto produto = new Produto(nome, descricao, preco);
+              
+              produtos.add(produto);
+            }
+            
+            pratileira.atualizarPratilheira(produtos, tipo);
           } catch(Exception err) {
             System.out.println(err.getMessage());
             err.printStackTrace();
           }
         
         } else if (opPratileira == 3) {
-          farmacia.listPratileiraDoTipo(tipo);
+          try {
+            System.out.print("Qual tipo para listar? ");
+            String tipoParaListar = sc.next();
+            
+            Pratileira pratileira = farmacia.showPratileiraDoTipo(tipoParaListar);
+            
+            System.out.print("Nome do produto: ");
+            String nome = sc.next();
+
+            System.out.print("Descrição do produto: ");
+            String descricao = sc.next();
+
+            System.out.print("Preço do produto: ");
+            double preco = sc.nextDouble();
+
+            Produto produto = new Produto(nome, descricao, preco);
+            
+            pratileira.adicionarProduto(produto);
+          } catch(Exception err) {
+            System.out.println("Error ao adicionar produto");
+            err.printStackTrace();
+          }
         
         } else if (opPratileira == 4) {
-          
-        
+          try {
+            System.out.print("Qual tipo para listar? ");
+            String tipoParaListar = sc.next();
+            
+            Pratileira pratileira = farmacia.showPratileiraDoTipo(tipoParaListar);
+            
+            System.out.print("Nome do produto: ");
+            String nome = sc.next();
+            
+            pratileira.removerProduto(nome);
+          } catch(Exception err) {
+            System.out.println("Error ao remover produto");
+            err.printStackTrace();
+          }
         } else if (opPratileira == 5) {
-          
+          try {
+            System.out.print("Qual tipo para listar? ");
+            String tipoParaListar = sc.next();
+            
+            Pratileira pratileira = farmacia.showPratileiraDoTipo(tipoParaListar);
+            
+            System.out.println(pratileira.listarProdutosDoTipo(tipoParaListar));
+          } catch(Exception err) {
+            System.out.println("Erro ao listar produtos");
+            err.printStackTrace();
+          }
         }
       }
     }
