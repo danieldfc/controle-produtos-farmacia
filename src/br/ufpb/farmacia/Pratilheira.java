@@ -58,6 +58,11 @@ public class Pratilheira {
       return this.produtos.add(produto);
     }
   }
+  
+  public boolean atualizarPratilheira(List<Produto> produtos) {
+    this.produtos.removeAll(this.produtos);
+    return this.produtos.addAll(produtos);
+  }
 
   public List<Produto> getProdutos() {
     return produtos;

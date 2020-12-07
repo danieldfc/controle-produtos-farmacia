@@ -12,7 +12,7 @@ import java.util.Objects;
  *
  * @author lucas
  */
-public class Gerente extends Pessoa {
+public class Gerente extends Pessoa implements GerenteInterface {
     private List<Funcionario> funcionarios;
 
     public Gerente(List<Funcionario> funcionarios, String nome, int idade, String cpf) {
@@ -57,6 +57,40 @@ public class Gerente extends Pessoa {
         return "Nome: " + getNome() 
                 + "CPF: " + getCpf();
     }
+
+  @Override
+  public Funcionario buscaFuncionario(String cpf) throws FuncionarioNotFound {
+    for (Funcionario funcionario: this.funcionarios) {
+      if (funcionario.getCpf().equals(cpf)) {
+        return funcionario;
+      }
+    }
     
-    
+    throw new FuncionarioNotFound("Funcionário não encontrado no sistema.");
+  }
+
+  @Override
+  public boolean removerFuncionario(String cpf) throws FuncionarioNotFound {
+    for (Funcionario funcionario: this.funcionarios) {
+      if (funcionario.getCpf().equals(cpf)) {
+        return this.funcionarios.remove(funcionario);
+      }
+    }
+
+    throw new FuncionarioNotFound("Funcionário não encontrado no sistema.");
+  }
+
+  @Override
+  public boolean adicionaFuncionario(Funcionario funcionario) {
+    if (getIdade() >= 18) {
+      return this.funcionarios.add(funcionario);
+    } else {
+      return false;
+    }
+  }
+
+  @Override
+  public List<Funcionario> listarFuncionarios() {
+    return this.funcionarios;
+  }
 }

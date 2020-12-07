@@ -39,7 +39,7 @@ class Pratilheira {
   public boolean removerProduto(String nomeProduto);
   public boolean adicionarProduto(Produto produto);
   public boolean atualizarPratilheira(ArrayList<Produto> produtos);
-  
+  	
   getters e setters...
 	equals e hashCode...
 	toString...
@@ -70,7 +70,7 @@ interface GerenteInterface {
 	public Funcionario buscaFuncionario(String cpf) throws FuncionarioNotFound;
   public boolean removerFuncionario(String cpf) throws FuncionarioNotFound;
   public boolean adicionaFuncionario(String nome, int idade, String cpf);
-  public boolean listarFuncionarios();
+  public List<Produto> listarFuncionarios();
 }
 
 class Gerente extends Pessoa implements GerenteInterface {
