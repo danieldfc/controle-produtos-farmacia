@@ -78,7 +78,7 @@ public class Farmacia extends CaixaRegistradora {
   public Gerente getGerente() {
     return gerente;
   }
-
+  
   public void setGerente(Gerente gerente) {
     this.gerente = gerente;
   }
