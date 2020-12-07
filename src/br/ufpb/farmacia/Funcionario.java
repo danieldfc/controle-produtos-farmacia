@@ -11,7 +11,6 @@ import java.util.Objects;
  *
  * @author danielfelizardo
  */
-import java.util.Objects;
 
 public class Funcionario extends Pessoa {
 
@@ -57,7 +56,6 @@ public class Funcionario extends Pessoa {
 
   @Override
   public String toString() {
-    return "Nome: " + getNome() + 
-      "CPF: " + getCpf();
+    return "Nome: " + getNome() + "\nCPF: " + getCpf() + "\nFunção: " + funcao;
   }
 }

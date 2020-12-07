@@ -13,23 +13,19 @@ import java.util.List;
  * @author danielfelizardo
  */
 public class Pratileira {
-  
+
   private List<Produto> produtos;
   private final int quantidadeMaxima;
   private String tipo;
-  
-  public Pratileira(
-  	List<Produto> produtos,
-  	int quantidadeMaxima,
-    String tipo
-	) {
-  	this.produtos = produtos;
-  	this.quantidadeMaxima = quantidadeMaxima;
+
+  public Pratileira(List<Produto> produtos, int quantidadeMaxima, String tipo) {
+    this.produtos = produtos;
+    this.quantidadeMaxima = quantidadeMaxima;
     this.tipo = tipo;
   }
-  
+
   private boolean existeProduto(Produto produto) {
-    for (Produto each: this.produtos) {
+    for (Produto each : this.produtos) {
       if (each.equals(produto)) {
         return true;
       }
@@ -37,17 +33,17 @@ public class Pratileira {
 
     return false;
   }
-  
+
   public boolean removerProduto(String nomeProduto) {
-    for (Produto each: this.produtos) {
+    for (Produto each : this.produtos) {
       if (each.getNome().equals(nomeProduto)) {
         return this.produtos.remove(each);
       }
     }
-    
+
     return false;
   }
-  
+
   public boolean adicionarProduto(Produto produto) {
     if (existeProduto(produto)) {
       return false;
@@ -59,22 +55,22 @@ public class Pratileira {
       return this.produtos.add(produto);
     }
   }
-  
+
   public boolean atualizarPratilheira(List<Produto> produtos, String tipo) {
     this.produtos.removeAll(this.produtos);
     this.setTipo(tipo);
     return this.produtos.addAll(produtos);
   }
-  
+
   public List<Produto> listarProdutosDoTipo(String tipo) {
     List<Produto> produtosDoTipo = new ArrayList<Produto>();
-    
-    for (Produto produto: this.produtos) {
+
+    for (Produto produto : this.produtos) {
       if (produto.getTipo().equalsIgnoreCase(tipo)) {
         produtosDoTipo.add(produto);
       }
     }
-    
+
     return produtosDoTipo;
   }
 
@@ -96,6 +92,6 @@ public class Pratileira {
 
   @Override
   public String toString() {
-    return "Pratilheira{" + "produtos=" + produtos + ", quantidadeMaxima=" + quantidadeMaxima + ", tipo=" + tipo + '}';
+    return ">>>Pratilheira<<<" + "\ntipo:" + tipo + "\nproduto:" + produtos + "\nquantidadeMaxima:" + quantidadeMaxima;
   }
 }
