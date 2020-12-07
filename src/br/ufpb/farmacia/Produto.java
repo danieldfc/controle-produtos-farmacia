@@ -7,7 +7,6 @@ import java.util.Objects;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author danielfelizardo
@@ -15,87 +14,87 @@ import java.util.Objects;
 public class Produto {
 
   private String nome;
-	private String descricao;
-	private double preco;
-	private String tipo;
+  private String descricao;
+  private double preco;
+  private String tipo;
 
-	public Produto() {
-		this("", "", 0.0);
-	}
-  
-    public Produto(String nome, String descricao, double preco){
-  	this.nome = nome;
- 		this.descricao = descricao;
-		this.preco = preco;
-	}
+  public Produto() {
+    this("", "", 0.0);
+  }
 
-    public String getNome() {
-        return nome;
-    }
+  public Produto(String nome, String descricao, double preco) {
+    this.nome = nome;
+    this.descricao = descricao;
+    this.preco = preco;
+  }
 
-    public void setNome(String nome) {
-      this.nome = nome;
-    }
+  public String getNome() {
+    return nome;
+  }
 
-    public String getDescricao() {
-      return descricao;
-    }
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
 
-    public void setDescricao(String descricao) {
-      this.descricao = descricao;
-    }
+  public String getDescricao() {
+    return descricao;
+  }
 
-    public double getPreco() {
-      return preco;
-    }
+  public void setDescricao(String descricao) {
+    this.descricao = descricao;
+  }
 
-    public void setPreco(double preco) {
-      this.preco = preco;
-    }
+  public double getPreco() {
+    return preco;
+  }
 
-    public String getTipo() {
-      return tipo;
-    }
+  public void setPreco(double preco) {
+    this.preco = preco;
+  }
 
-    public void setTipo(String tipo) {
-      this.tipo = tipo;
-    }
+  public String getTipo() {
+    return tipo;
+  }
 
-    @Override
-    public int hashCode() {
-      int hash = 7;
-      hash = 89 * hash + Objects.hashCode(this.nome);
-      hash = 89 * hash + Objects.hashCode(this.tipo);
-      return hash;
-    }
+  public void setTipo(String tipo) {
+    this.tipo = tipo;
+  }
 
-    @Override
-    public boolean equals(Object obj) {
-      if (this == obj) {
-        return true;
-      }
-      if (obj == null) {
-        return false;
-      }
-      if (getClass() != obj.getClass()) {
-        return false;
-      }
-      final Produto other = (Produto) obj;
-      if (!Objects.equals(this.nome, other.nome)) {
-        return false;
-      }
-      if (!Objects.equals(this.tipo, other.tipo)) {
-        return false;
-      }
+  @Override
+  public int hashCode() {
+    int hash = 7;
+    hash = 89 * hash + Objects.hashCode(this.nome);
+    hash = 89 * hash + Objects.hashCode(this.tipo);
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
       return true;
     }
-
-    @Override
-    public String toString() {
-      return "Produto: " 
-              + "\nnome=" + nome 
-              + "\ndescricao=" + descricao 
-              + "\npreco=" + preco 
-              + "\ntipo=" + tipo;
+    if (obj == null) {
+      return false;
     }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final Produto other = (Produto) obj;
+    if (!Objects.equals(this.nome, other.nome)) {
+      return false;
+    }
+    if (!Objects.equals(this.tipo, other.tipo)) {
+      return false;
+    }
+    return true;
+  }
+
+  @Override
+  public String toString() {
+    return "Produto: "
+      + "\nnome=" + nome
+      + "\ndescricao=" + descricao
+      + "\npreco=" + preco
+      + "\ntipo=" + tipo;
+  }
 }

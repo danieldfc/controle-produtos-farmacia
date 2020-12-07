@@ -17,16 +17,32 @@ public class Farmacia extends CaixaRegistradora {
   private Gerente gerente;
   private List<Pedido> pedidos;
   private List<Funcionario> funcionarios;
+  private List<Pratileira> pratileiras;
 
-  public Farmacia() {
+  public Farmacia(ArrayList<Funcionario> funcionario, Gerente gerente) {
     super(0);
-    this.gerente = new Gerente(new ArrayList<Funcionario>(), "", 0, "");
-    this.funcionarios = new ArrayList<Funcionario>();
+    this.gerente = gerente;
+    this.funcionarios = funcionario;
     this.pedidos = new ArrayList<Pedido>();
+    this.pratileiras = new ArrayList<Pratileira>();
   }
 
   public boolean adicionaPedido(Pedido pedido) {
     return this.pedidos.add(pedido);
+  }
+  
+  public boolean adicionarPratileira(Pratileira pratileira) {
+    return this.pratileiras.add(pratileira);
+  }
+  
+  public Pratileira showPratileiraDoTipo(String tipo) throws PratileiraNotFound {    
+    for (Pratileira pratileira: this.pratileiras) {
+      if (pratileira.getTipo().equalsIgnoreCase(tipo)) {
+        return pratileira;
+      }
+    }
+    
+    throw new PratileiraNotFound("Pratileira não encontrada no sistema.");
   }
 
   public boolean cancelarPedido(int ID) throws PedidoNotFound {

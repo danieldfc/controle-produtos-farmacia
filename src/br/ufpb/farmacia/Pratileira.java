@@ -5,19 +5,20 @@
  */
 package br.ufpb.farmacia;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author danielfelizardo
  */
-public class Pratilheira {
+public class Pratileira {
   
   private List<Produto> produtos;
   private final int quantidadeMaxima;
   private String tipo;
   
-  public Pratilheira(
+  public Pratileira(
   	List<Produto> produtos,
   	int quantidadeMaxima,
     String tipo
@@ -62,6 +63,18 @@ public class Pratilheira {
   public boolean atualizarPratilheira(List<Produto> produtos) {
     this.produtos.removeAll(this.produtos);
     return this.produtos.addAll(produtos);
+  }
+  
+  public List<Produto> listarProdutosDoTipo(String tipo) {
+    List<Produto> produtosDoTipo = new ArrayList<Produto>();
+    
+    for (Produto produto: this.produtos) {
+      if (produto.getTipo().equalsIgnoreCase(tipo)) {
+        produtosDoTipo.add(produto);
+      }
+    }
+    
+    return produtosDoTipo;
   }
 
   public List<Produto> getProdutos() {
