@@ -62,8 +62,8 @@ public class Pratileira {
     return this.produtos.addAll(produtos);
   }
 
-  public List<Produto> listarProdutosDoTipo(String tipo) {
-    List<Produto> produtosDoTipo = new ArrayList<Produto>();
+  public ArrayList<Produto> listarProdutosDoTipo(String tipo) {
+    ArrayList<Produto> produtosDoTipo = new ArrayList<Produto>();
 
     for (Produto produto : this.produtos) {
       if (produto.getTipo().equalsIgnoreCase(tipo)) {

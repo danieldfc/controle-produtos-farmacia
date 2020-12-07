@@ -6,6 +6,7 @@
 package br.ufpb.farmacia;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -17,10 +18,10 @@ public class ProgramaPrincipal {
   public static int menuPratileira(Scanner sc) {
     System.out.println("--- Pratileira ---");
     System.out.println("1 - Criar pratileira");
-    System.out.println("2 - Listar produtos do tipo");
-    System.out.println("3 - Atualizar pratileira");
-    System.out.println("4 - Adicionar produto");
-    System.out.println("5 - Remover produto");
+    System.out.println("2 - Atualizar pratileira");
+    System.out.println("3 - Adicionar produto");
+    System.out.println("4 - Remover produto");
+    System.out.println("5 - Listar produtos do tipo");
     System.out.print("Opção: ");
     int op = sc.nextInt();
 
@@ -29,9 +30,9 @@ public class ProgramaPrincipal {
 
   public static int menuFuncionario(Scanner sc) {
     System.out.println("--- Funcionário ---");
-    System.out.println("1 - Adicionar funcionário.");
-    System.out.println("2 - Remover funcionário.");
-    System.out.println("3 - Buscar Funcionário.");
+    System.out.println("1 - Adicionar funcionário");
+    System.out.println("2 - Remover funcionário");
+    System.out.println("3 - Buscar funcionário");
     System.out.print("Opção: ");
     int op = sc.nextInt();
 
@@ -56,6 +57,7 @@ public class ProgramaPrincipal {
     System.out.println("2 - Funcionário");
     System.out.println("3 - Pedidos");
     System.out.println("4 - Sair");
+    System.out.print("Opção: ");
     int op = sc.nextInt();
 
     return op;
@@ -77,7 +79,7 @@ public class ProgramaPrincipal {
 
         if (opPratileira == 1) {
           try {
-            System.out.print("Quantidade máxima que a pratileira suporta: ");
+            System.out.print("Quantidade máxima de produtos que a pratileira suporta: ");
             int quantidadeMaxima = sc.nextInt();
 
             System.out.print("Quantidade de produtos para adicionar:");
@@ -98,7 +100,7 @@ public class ProgramaPrincipal {
               System.out.print("Preço do produto [" + (i + 1) + "]:");
               double preco = sc.nextDouble();
 
-              Produto produto = new Produto(nome, descricao, preco);
+              Produto produto = new Produto(nome, descricao, preco, tipo);
 
               produtos.add(produto);
             }
@@ -110,7 +112,6 @@ public class ProgramaPrincipal {
             System.out.println("Pratileira adicionada com sucesso!");
           } catch (Exception err) {
             System.out.println(err.getMessage());
-            err.printStackTrace();
           }
         } else if (opPratileira == 2) {
           try {
@@ -137,7 +138,7 @@ public class ProgramaPrincipal {
               System.out.print("Preço do produto [" + (i + 1) + "]:");
               double preco = sc.nextDouble();
 
-              Produto produto = new Produto(nome, descricao, preco);
+              Produto produto = new Produto(nome, descricao, preco, tipo);
 
               produtos.add(produto);
             }
@@ -145,7 +146,6 @@ public class ProgramaPrincipal {
             pratileira.atualizarPratilheira(produtos, tipo);
           } catch (Exception err) {
             System.out.println(err.getMessage());
-            err.printStackTrace();
           }
 
         } else if (opPratileira == 3) {
@@ -164,12 +164,11 @@ public class ProgramaPrincipal {
             System.out.print("Preço do produto: ");
             double preco = sc.nextDouble();
 
-            Produto produto = new Produto(nome, descricao, preco);
+            Produto produto = new Produto(nome, descricao, preco, pratileira.getTipo());
 
             pratileira.adicionarProduto(produto);
           } catch (Exception err) {
             System.out.println("Error ao adicionar produto");
-            err.printStackTrace();
           }
 
         } else if (opPratileira == 4) {
@@ -194,14 +193,14 @@ public class ProgramaPrincipal {
 
             Pratileira pratileira = farmacia.showPratileiraDoTipo(tipoParaListar);
 
+            System.out.println(pratileira);
+
             System.out.println(pratileira.listarProdutosDoTipo(tipoParaListar));
           } catch (Exception err) {
             System.out.println(err.getMessage());
             err.printStackTrace();
           }
         }
-
-        op = menu(sc);
       } else if (op == 2) {
         int opFuncionario = menuFuncionario(sc);
 
@@ -221,7 +220,25 @@ public class ProgramaPrincipal {
           try {
             System.out.println("Informe o CPF do Funcionário caso queira removelo: ");
             String cpf = sc.next();
-            gerente.removerFuncionario(cpf);
+            System.out.println(gerente.removerFuncionario(cpf));
+          } catch (Exception err) {
+            System.out.println(err.getMessage());
+            err.printStackTrace();
+          }
+        } else if (opFuncionario == 2) {
+          try {
+            System.out.println("Informe o CPF do Funcionário caso queira remover: ");
+            String cpf = sc.next();
+            System.out.println(gerente.removerFuncionario(cpf));
+          } catch (Exception err) {
+            System.out.println(err.getMessage());
+            err.printStackTrace();
+          }
+        } else if (opFuncionario == 3) {
+          try {
+            System.out.println("Informe o CPF do Funcionário para listar: ");
+            String cpf = sc.next();
+            System.out.println(gerente.buscaFuncionario(cpf));
           } catch (Exception err) {
             System.out.println(err.getMessage());
             err.printStackTrace();
@@ -235,9 +252,84 @@ public class ProgramaPrincipal {
             err.printStackTrace();
           }
         }
+      } else if (op == 3) {
+        int opPedido = menuPedido(sc);
 
+        if (opPedido == 1) {
+          try {
+            System.out.print("Qual tipo para listar? ");
+            String tipoParaListar = sc.next();
+
+            Pratileira pratileira = farmacia.showPratileiraDoTipo(tipoParaListar);
+
+            System.out.print("Quantidade de produtos para adicionar no pedido:");
+            int quantidadeProdutos = sc.nextInt();
+
+            ArrayList<Produto> produtos = new ArrayList<Produto>();
+
+            for (int i = 0; i < quantidadeProdutos; i++) {
+              System.out.print("Nome do produto [" + (i + 1) + "]:");
+              String nome = sc.next();
+
+              Produto produto = pratileira.showProduto(nome);
+
+              produtos.add(produto);
+            }
+
+            Pedido pedido = new Pedido(produtos);
+
+            farmacia.adicionaPedido(pedido);
+
+            System.out.println("Pedido adicionado com sucesso.");
+          } catch (Exception err) {
+            System.out.println(err.getMessage());
+            err.printStackTrace();
+          }
+        } else if (opPedido == 2) {
+          try {
+            List<Pedido> pedidos = farmacia.getPedidos();
+            System.out.println("Pedidos: \n" + pedidos);
+
+            System.out.print("Qual dos pedidos quer verificar o total? ");
+            int ID = sc.nextInt();
+            Pedido pedidoParaTotal = farmacia.showPedido(ID);
+
+            System.out.println("Total a pagar: " + farmacia.totalAPagar(pedidoParaTotal));
+          } catch (Exception err) {
+            System.out.println(err.getMessage());
+            err.printStackTrace();
+          }
+
+        } else if (opPedido == 3) {
+          try {
+            List<Pedido> pedidos = farmacia.getPedidos();
+            System.out.println("Pedidos: \n" + pedidos);
+
+            System.out.print("Qual dos pedidos quer verificar o total? ");
+            int ID = sc.nextInt();
+            Pedido pedidoParaTotal = farmacia.showPedido(ID);
+            double total = farmacia.totalAPagar(pedidoParaTotal);
+
+            System.out.println("Total: " + total);
+
+            System.out.print("Quanto recebido do cliente? ");
+            double recebido = sc.nextDouble();
+
+            farmacia.finalizarPedido(pedidoParaTotal, total, recebido);
+
+            System.out.println("Pedido finalizado com sucesso!");
+          } catch (Exception err) {
+            System.out.println(err.getMessage());
+            err.printStackTrace();
+          }
+        }
+        System.out.println("3 - Finalizar pedido");
+        System.out.println("4 - Cancelar pedido");
       }
+      op = menu(sc);
     }
+
+    System.out.print("Volte sempre!");
   }
 
 }
