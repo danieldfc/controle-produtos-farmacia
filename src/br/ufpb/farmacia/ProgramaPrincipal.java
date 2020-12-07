@@ -84,32 +84,36 @@ public class ProgramaPrincipal {
 
             System.out.print("Quantidade de produtos para adicionar:");
             int quantidadeProdutos = sc.nextInt();
+            
+            if (quantidadeProdutos > quantidadeMaxima) {
+              System.out.println("Quantidade inválida");
+            } else {
+              System.out.print("Qual o tipo de pratileira:");
+              String tipo = sc.next();
 
-            System.out.print("Qual o tipo de pratileira:");
-            String tipo = sc.next();
+              ArrayList<Produto> produtos = new ArrayList<Produto>();
 
-            ArrayList<Produto> produtos = new ArrayList<Produto>();
+              for (int i = 1; i <= quantidadeProdutos; i++) {
+                System.out.print("Nome do produto [" + i + "]:");
+                String nome = sc.next();
 
-            for (int i = 0; i < quantidadeProdutos; i++) {
-              System.out.print("Nome do produto [" + (i + 1) + "]:");
-              String nome = sc.next();
+                System.out.print("Descrição do produto [" + i + "]:");
+                String descricao = sc.next();
 
-              System.out.print("Descrição do produto [" + (i + 1) + "]:");
-              String descricao = sc.next();
+                System.out.print("Preço do produto [" + i + "]:");
+                double preco = sc.nextDouble();
 
-              System.out.print("Preço do produto [" + (i + 1) + "]:");
-              double preco = sc.nextDouble();
+                Produto produto = new Produto(nome, descricao, preco, tipo);
 
-              Produto produto = new Produto(nome, descricao, preco, tipo);
+                produtos.add(produto);
+              }
 
-              produtos.add(produto);
-            }
+              Pratileira pratilheira = new Pratileira(produtos, quantidadeMaxima, tipo);
 
-            Pratileira pratilheira = new Pratileira(produtos, quantidadeMaxima, tipo);
+              farmacia.adicionarPratileira(pratilheira);
 
-            farmacia.adicionarPratileira(pratilheira);
-
-            System.out.println("Pratileira adicionada com sucesso!");
+              System.out.println("Pratileira adicionada com sucesso!");
+            }            
           } catch (Exception err) {
             System.out.println(err.getMessage());
           }
@@ -192,8 +196,6 @@ public class ProgramaPrincipal {
             String tipoParaListar = sc.next();
 
             Pratileira pratileira = farmacia.showPratileiraDoTipo(tipoParaListar);
-
-            System.out.println(pratileira);
 
             System.out.println(pratileira.listarProdutosDoTipo(tipoParaListar));
           } catch (Exception err) {
@@ -329,7 +331,7 @@ public class ProgramaPrincipal {
       op = menu(sc);
     }
 
-    System.out.print("Volte sempre!");
+    System.out.print("Volte sempre!\n");
   }
 
 }
