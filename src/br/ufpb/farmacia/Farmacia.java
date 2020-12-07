@@ -68,7 +68,7 @@ public class Farmacia extends CaixaRegistradora {
 
   public boolean finalizarPedido(Pedido pedido, double total, double recebido) {
     if (recebido >= total) {
-      this.setTotal(this.getTotal() - total);
+      this.setTotal(total);
       return this.pedidos.remove(pedido);
     }
 
