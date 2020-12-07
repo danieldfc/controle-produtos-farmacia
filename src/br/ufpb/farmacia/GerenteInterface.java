@@ -15,5 +15,4 @@ public interface GerenteInterface {
   public Funcionario buscaFuncionario(String cpf) throws FuncionarioNotFound;
   public boolean removerFuncionario(String cpf) throws FuncionarioNotFound;
   public boolean adicionaFuncionario(Funcionario funcionario);
-  public List<Funcionario> listarFuncionarios();
 }

@@ -127,9 +127,6 @@ public class ProgramaPrincipal {
             System.out.print("Quantidade de produtos para adicionar:");
             int quantidadeProdutos = sc.nextInt();
 
-            System.out.print("Qual o tipo de pratileira:");
-            String tipo = sc.next();
-
             ArrayList<Produto> produtos = new ArrayList<Produto>();
 
             for (int i = 0; i < quantidadeProdutos; i++) {
@@ -142,12 +139,13 @@ public class ProgramaPrincipal {
               System.out.print("Preço do produto [" + (i + 1) + "]:");
               double preco = sc.nextDouble();
 
-              Produto produto = new Produto(nome, descricao, preco, tipo);
+              Produto produto = new Produto(nome, descricao, preco, tipoParaListar);
 
               produtos.add(produto);
             }
 
-            pratileira.atualizarPratilheira(produtos, tipo);
+            pratileira.atualizarPratilheira(produtos, tipoParaListar);
+            System.out.println("Pratileira atualizada com sucesso.");
           } catch (Exception err) {
             System.out.println(err.getMessage());
           }
@@ -171,8 +169,9 @@ public class ProgramaPrincipal {
             Produto produto = new Produto(nome, descricao, preco, pratileira.getTipo());
 
             pratileira.adicionarProduto(produto);
+            System.out.println("Produto adicionado com sucesso.");
           } catch (Exception err) {
-            System.out.println("Error ao adicionar produto");
+            System.out.println(err.getMessage());
           }
 
         } else if (opPratileira == 4) {
@@ -186,9 +185,9 @@ public class ProgramaPrincipal {
             String nome = sc.next();
 
             pratileira.removerProduto(nome);
+            System.out.println("Produto removido com sucesso.");
           } catch (Exception err) {
             System.out.println(err.getMessage());
-            err.printStackTrace();
           }
         } else if (opPratileira == 5) {
           try {
@@ -200,7 +199,6 @@ public class ProgramaPrincipal {
             System.out.println(pratileira.listarProdutosDoTipo(tipoParaListar));
           } catch (Exception err) {
             System.out.println(err.getMessage());
-            err.printStackTrace();
           }
         }
       } else if (op == 2) {
@@ -208,50 +206,37 @@ public class ProgramaPrincipal {
 
         if (opFuncionario == 1) {
           try {
-            System.out.println("Informe os dados do Funcionário novo [Nome, Idade, Cpf e Função]: ");
+            System.out.println("Informe os dados do novo Funcionário [Nome, Idade, Cpf e Função]");
+            System.out.print("Nome: ");
             String nome = sc.next();
+            System.out.print("Idade: ");
             int idade = sc.nextInt();
+            System.out.print("CPF: ");
             String cpf = sc.next();
+            System.out.print("Função: ");
             String funcao = sc.next();
             gerente.adicionaFuncionario(new Funcionario(nome, idade, cpf, funcao));
+            System.out.println("Funcionário adicionado com sucesso.");
           } catch (Exception err) {
             System.out.println(err.getMessage());
-            err.printStackTrace();
           }
         } else if (opFuncionario == 2) {
           try {
-            System.out.println("Informe o CPF do Funcionário caso queira removelo: ");
+            System.out.print("Informe o CPF do Funcionário caso queira remover: ");
             String cpf = sc.next();
-            System.out.println(gerente.removerFuncionario(cpf));
+            gerente.removerFuncionario(cpf);
+            System.out.println("Funcionário removido com sucesso.");
           } catch (Exception err) {
             System.out.println(err.getMessage());
-            err.printStackTrace();
-          }
-        } else if (opFuncionario == 2) {
-          try {
-            System.out.println("Informe o CPF do Funcionário caso queira remover: ");
-            String cpf = sc.next();
-            System.out.println(gerente.removerFuncionario(cpf));
-          } catch (Exception err) {
-            System.out.println(err.getMessage());
-            err.printStackTrace();
           }
         } else if (opFuncionario == 3) {
           try {
-            System.out.println("Informe o CPF do Funcionário para listar: ");
+            System.out.print("Informe o CPF do Funcionário para listar: ");
             String cpf = sc.next();
+            
             System.out.println(gerente.buscaFuncionario(cpf));
           } catch (Exception err) {
             System.out.println(err.getMessage());
-            err.printStackTrace();
-          }
-        } else if (opFuncionario == 3) {
-          try {
-            System.out.println("Deseja buscar Funcionário [Informe o CPF]: ");
-            String cpf = sc.next();
-            gerente.buscaFuncionario(cpf);
-          } catch (Exception err) {
-            err.printStackTrace();
           }
         }
       } else if (op == 3) {
@@ -285,48 +270,71 @@ public class ProgramaPrincipal {
             System.out.println("Pedido adicionado com sucesso.");
           } catch (Exception err) {
             System.out.println(err.getMessage());
-            err.printStackTrace();
           }
         } else if (opPedido == 2) {
           try {
             List<Pedido> pedidos = farmacia.getPedidos();
-            System.out.println("Pedidos: \n" + pedidos);
+            if (pedidos.size() > 0) {
+              System.out.println("Pedidos: \n" + pedidos);
 
-            System.out.print("Qual dos pedidos quer verificar o total? ");
-            int ID = sc.nextInt();
-            Pedido pedidoParaTotal = farmacia.showPedido(ID);
+              System.out.print("Qual dos pedidos quer verificar o total? ");
+              int ID = sc.nextInt();
+              Pedido pedidoParaTotal = farmacia.showPedido(ID);
 
-            System.out.println("Total a pagar: " + farmacia.totalAPagar(pedidoParaTotal));
+              System.out.println("Total a pagar: " + farmacia.totalAPagar(pedidoParaTotal));
+            } else {
+              System.out.println("Não possui pedidos.");
+            }            
           } catch (Exception err) {
             System.out.println(err.getMessage());
-            err.printStackTrace();
           }
 
         } else if (opPedido == 3) {
           try {
             List<Pedido> pedidos = farmacia.getPedidos();
-            System.out.println("Pedidos: \n" + pedidos);
+            
+            if (pedidos.size() > 0) {
+              System.out.println("Pedidos: \n" + pedidos);
 
-            System.out.print("Qual dos pedidos quer verificar o total? ");
-            int ID = sc.nextInt();
-            Pedido pedidoParaTotal = farmacia.showPedido(ID);
-            double total = farmacia.totalAPagar(pedidoParaTotal);
+              System.out.print("Qual dos pedidos quer verificar o total? ");
+              int ID = sc.nextInt();
+              Pedido pedidoParaTotal = farmacia.showPedido(ID);
+              double total = farmacia.totalAPagar(pedidoParaTotal);
 
-            System.out.println("Total: " + total);
+              System.out.println("Total: " + total);
 
-            System.out.print("Quanto recebido do cliente? ");
-            double recebido = sc.nextDouble();
+              System.out.print("Quanto recebido do cliente? ");
+              double recebido = sc.nextDouble();
 
-            farmacia.finalizarPedido(pedidoParaTotal, total, recebido);
+              farmacia.finalizarPedido(pedidoParaTotal, total, recebido);
 
-            System.out.println("Pedido finalizado com sucesso!");
+              System.out.println("Pedido finalizado com sucesso!");
+            } else {
+              System.out.println("Não possui pedidos.");
+            }
           } catch (Exception err) {
             System.out.println(err.getMessage());
-            err.printStackTrace();
+          }
+        } else if (opPedido == 4) {
+          try {
+            List<Pedido> pedidos = farmacia.getPedidos();
+            
+            if (pedidos.size() > 0) {
+              System.out.println("Pedidos: \n" + pedidos);
+
+              System.out.print("Qual dos pedidos quer cancelar? ");
+              int ID = sc.nextInt();
+
+              farmacia.cancelarPedido(ID);
+
+              System.out.println("Pedido cancelado com sucesso!");
+            } else {
+              System.out.println("Não possui pedido.");
+            }
+          } catch (Exception err) {
+            System.out.println(err.getMessage());
           }
         }
-        System.out.println("3 - Finalizar pedido");
-        System.out.println("4 - Cancelar pedido");
       }
       op = menu(sc);
     }

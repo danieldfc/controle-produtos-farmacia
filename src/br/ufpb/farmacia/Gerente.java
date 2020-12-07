@@ -54,13 +54,13 @@ public class Gerente extends Pessoa implements GerenteInterface {
 
   @Override
   public String toString() {
-    return "Nome: " + getNome() + "CPF: " + getCpf();
+    return "Nome: " + this.getNome() + "CPF: " + this.getCpf();
   }
 
   @Override
   public Funcionario buscaFuncionario(String cpf) throws FuncionarioNotFound {
     for (Funcionario funcionario : this.funcionarios) {
-      if (funcionario.getCpf().equals(cpf)) {
+      if (funcionario.getCpf().equalsIgnoreCase(cpf)) {
         return funcionario;
       }
     }
@@ -71,7 +71,7 @@ public class Gerente extends Pessoa implements GerenteInterface {
   @Override
   public boolean removerFuncionario(String cpf) throws FuncionarioNotFound {
     for (Funcionario funcionario : this.funcionarios) {
-      if (funcionario.getCpf().equals(cpf)) {
+      if (funcionario.getCpf().equalsIgnoreCase(cpf)) {
         return this.funcionarios.remove(funcionario);
       }
     }
@@ -81,15 +81,10 @@ public class Gerente extends Pessoa implements GerenteInterface {
 
   @Override
   public boolean adicionaFuncionario(Funcionario funcionario) {
-    if (getIdade() >= 18) {
+    if (this.getIdade() >= 18) {
       return this.funcionarios.add(funcionario);
     } else {
       return false;
     }
-  }
-
-  @Override
-  public List<Funcionario> listarFuncionarios() {
-    return this.funcionarios;
   }
 }
