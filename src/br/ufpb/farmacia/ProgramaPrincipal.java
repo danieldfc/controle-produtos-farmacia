@@ -70,7 +70,11 @@ public class ProgramaPrincipal {
     int op = menu(sc);
 
     while (op != 4) {
-             if (opPratileira == 1) {
+
+      if (op == 1) {
+        int opPratileira = menuPratileira(sc);
+
+        if (opPratileira == 1) {
           try {
             System.out.print("Quantidade máxima que a pratileira suporta: ");
             int quantidadeMaxima = sc.nextInt();
