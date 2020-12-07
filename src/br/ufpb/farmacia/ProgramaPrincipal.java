@@ -130,12 +130,8 @@ public class ProgramaPrincipal {
         }
       } else if (op == 2) {
         int opFuncionario = menuFuncionario(sc);
-        /*
-         * System.out.println("2 - Remover funcionário"); System.out.print("Opção: ");
-         * int op = sc.nextInt();
-         */
 
-        if (op == 1) {
+        if (opFuncionario == 1) {
           try {
             System.out.print("Informe os dados do Funcionário novo [Nome, Idade, Cpf e Função]: ");
             String nome = sc.next();
@@ -147,7 +143,7 @@ public class ProgramaPrincipal {
             System.out.println(err.getMessage());
             err.printStackTrace();
           }
-        } else if (op == 2) {
+        } else if (opFuncionario == 2) {
           try {
             System.out.println("Informe o CPF do Funcionário caso queira removelo: ");
             String cpf = sc.next();
