@@ -111,10 +111,18 @@ public class ProgramaPrincipal {
             err.printStackTrace();
           }
         } else if (opPratileira == 2) {
-          
+          try {            
+            System.out.print("Qual tipo para listar? ");
+            String tipo = sc.next();
+            
+            farmacia.listPratileiraDoTipo(tipo);
+          } catch(Exception err) {
+            System.out.println(err.getMessage());
+            err.printStackTrace();
+          }
         
         } else if (opPratileira == 3) {
-          
+          farmacia.listPratileiraDoTipo(tipo);
         
         } else if (opPratileira == 4) {
           
