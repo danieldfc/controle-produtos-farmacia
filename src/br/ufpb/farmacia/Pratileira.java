@@ -62,6 +62,16 @@ public class Pratileira {
     return this.produtos.addAll(produtos);
   }
 
+  public Produto showProduto(String nome) throws ProdutoNotFound {
+    for (Produto produto : this.produtos) {
+      if (produto.getNome().equalsIgnoreCase(nome)) {
+        return produto;
+      }
+    }
+    
+    throw new ProdutoNotFound("Produto não encontrado no sistema.");
+  }
+
   public ArrayList<Produto> listarProdutosDoTipo(String tipo) {
     ArrayList<Produto> produtosDoTipo = new ArrayList<Produto>();
 
